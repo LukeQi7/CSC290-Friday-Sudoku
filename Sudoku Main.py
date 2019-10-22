@@ -1,10 +1,20 @@
-while game.iswon() is not True:
-    x = raw_input("Row: ")
-    y = raw_input("Column: ")
-    value = raw_input("Number: ")
-    if game.pencil_in is True:
-        game.input(x, y, value)
-    else:
-        game.pencil_input(x, y, value)
+from board import Board
+s = Board()
 
-print("Game Won!")
+while not s.is_full():
+    print(s.nice_string())
+    x = int(input("Row: "))
+    y = int(input("Column: "))
+    value = int(input("Number: "))
+    if s.get_penciled(x, y, value) is True:
+        print("Setting", x, ",", y, " to", value)
+        s.change_val(x, y, value)
+    else:
+        print("Penciling", value, " at", x, ",", y)
+        s.set_penciled(x, y, value, True)
+    
+
+if s.is_won():
+    print("Game Won!")
+else:
+    print("Game Lost!")
