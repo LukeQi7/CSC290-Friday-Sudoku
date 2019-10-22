@@ -11,18 +11,16 @@ class Board:
                 self.board[i].append(Tile())
         # 9x9 board, list of lists of tiles
     
+    def set_penciled(self, x, y, val, penciled_boolean):
+        self.board[x][y].set_penciled(val, penciled_boolean)
+
     def get_val(self, x, y):
         return self.board[x][y].get_val()
 
-    def get_penciled(self, x, y):
+    def get_penciled(self, x, y, num):
         """Return the dictionary of booleans that represents the penciled values for the specified tile
         """
-        return self.board[x][y].get_penciled()
-
-    def get_penciled_num(self, x, y, num):
-        """Returns whether or not num is penciled in the given coordinate
-        """
-        return self.get_penciled(x, y)[num]
+        return self.board[x][y].get_penciled(num)
     
     def change_val(self, x, y, val = 0):
         """Changes the value stored in board
