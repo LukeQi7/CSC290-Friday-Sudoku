@@ -27,6 +27,8 @@ class Board:
         if not self.is_full:
             return False
         matr = self.get_int_matrix()
+
+        #Check rows and columns
         for i in range(len(matr)):
             row_lst = []
             col_lst = []
@@ -37,6 +39,22 @@ class Board:
                 return False
             if len(set(col_lst)) != len(col_lst):
                 return False
+        
+        #Check 3x3 squares
+        squares = []
+        for i in range(3):
+            for j in range(3):
+                rows = matr[(3*j):(3*j)+3]
+                for x in range(len(rows)):
+                    rows[x] = rows[x][(3*i):(3*i)+3]
+                squares.append(rows)
+        for i in squares:
+            square_lst = []
+            for col in i:
+                square_lst.extend(col)
+            if len(set(square_lst)) != len(square_lst):
+                return False
+    
         return True
     
     def get_int_matrix(self):
@@ -76,17 +94,3 @@ class Board:
             out = out + "\n"
         return out
             
-
-
-import random
-s = Board()
-while(not s.is_won()):
-    s = Board()
-    for i in range(0, 9):
-        for j in range(0, 9):
-            x = random.randint(1,9)
-            s.change_val(i, j, x)
-    print(s.nice_string())
-
-# print(s.get_int_matrix())
-print(s.nice_string())
