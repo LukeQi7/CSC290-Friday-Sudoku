@@ -7,7 +7,7 @@ class Board:
     
 
     def get_val(self, x, y):
-        return board[x][y]
+        return board[x][y].get_val()
 
 
     def new_game(self, difficulty = 0):
