@@ -11,10 +11,18 @@ class Board:
                 self.board[i].append(Tile())
         # 9x9 board, list of lists of tiles
     
-
     def get_val(self, x, y):
         return self.board[x][y].get_val()
 
+    def get_penciled(self, x, y):
+        """Return the dictionary of booleans that represents the penciled values for the specified tile
+        """
+        return self.board[x][y].get_penciled()
+
+    def get_penciled_num(self, x, y, num):
+        """Returns whether or not num is penciled in the given coordinate
+        """
+        return self.get_penciled(x, y)[num]
     
     def change_val(self, x, y, val = 0):
         """Changes the value stored in board
@@ -22,7 +30,7 @@ class Board:
         self.board[x][y].set_val(val)
 
     def is_won(self):
-        """Return true iff the board is filled in completely and follows all rules of sudoku (all rows/columns have no repeated digits)
+        """Return true iff the board is filled in completely and follows all rules of sudoku (all rows/columns and 3x3 sub-squares have no repeated digits)
         """
         if not self.is_full:
             return False
