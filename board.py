@@ -23,9 +23,11 @@ class Board:
         return self.board[x][y].get_penciled(num)
     
     def change_val(self, x, y, val = 0):
-        """Changes the value stored in board
+        """Changes the value stored in board, and sets all penciled values to false
         """
         self.board[x][y].set_val(val)
+        for i in range(1,10):
+            self.board[x][y].set_penciled(i, False)
 
     def is_won(self):
         """Return true iff the board is filled in completely and follows all rules of sudoku (all rows/columns and 3x3 sub-squares have no repeated digits)
