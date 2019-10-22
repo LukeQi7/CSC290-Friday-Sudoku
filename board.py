@@ -62,3 +62,31 @@ class Board:
         """
         pass
     
+    def nice_string(self):
+        """Returns a string representation of the board that is easily human readable
+        """
+        out = ""
+        for i in range(self.DIMENSION):
+            for j in range(self.DIMENSION):
+                out = out + " " + str(self.get_val(i, j)) + " "
+                if j == 2 or j == 5:
+                    out = out + "|"
+            if i == 2 or i == 5:
+                out = out + "\n" + " -  -  - + -  -  - + -  -  -"
+            out = out + "\n"
+        return out
+            
+
+
+import random
+s = Board()
+while(not s.is_won()):
+    s = Board()
+    for i in range(0, 9):
+        for j in range(0, 9):
+            x = random.randint(1,9)
+            s.change_val(i, j, x)
+    print(s.nice_string())
+
+# print(s.get_int_matrix())
+print(s.nice_string())
