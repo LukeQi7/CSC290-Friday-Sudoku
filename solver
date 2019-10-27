@@ -1,0 +1,39 @@
+
+
+
+
+
+
+
+def sub(r: int, c:int)-> Set[str]:
+        
+        s = round(n ** (1 / 2))
+        ul_row = (r // s) * s
+        ul_col = (c // s) * s
+
+        new = []
+        for i in range(s):
+            for j in range(s):
+                new.append(symbols[ul_row + i][ul_col + j])
+        return set(new)
+
+    def row(self,r:int) -> Set[str]:
+        a = self.board[r]
+        return set(a)
+
+
+    def col(self, c: int) -> Set[str]:
+        for row in self.board:
+            return set(row[c])
+
+    def fail_fast(self):
+        for r in range(self._n):
+            for c in range(self._n):
+                if self._symbols[r][c] == '0':
+                    total = self.row(r)|self.col(c)|self.sub(r, c)
+                    all = self._symbol_set - total
+
+                    if all == set():
+                        return True
+        return False
+        
