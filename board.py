@@ -1,6 +1,7 @@
 from tile import Tile
-class Board:
 
+
+class Board:
     DIMENSION = 9
 
     def __init__(self):
@@ -25,11 +26,11 @@ class Board:
         """
         return self.board[x][y].get_penciled(num)
 
-    def change_val(self, x, y, val = 0):
+    def change_val(self, x, y, val=0):
         """Changes the value stored in board, and sets all penciled values to false
         """
         self.board[x][y].set_val(val)
-        for i in range(1,10):
+        for i in range(1, 10):
             self.board[x][y].set_penciled(i, False)
 
     def is_won(self):
@@ -39,7 +40,7 @@ class Board:
             return False
         matr = self.get_int_matrix()
 
-        #Check rows and columns
+        # Check rows and columns
         for i in range(len(matr)):
             row_lst = []
             col_lst = []
@@ -51,13 +52,13 @@ class Board:
             if len(set(col_lst)) != len(col_lst):
                 return False
 
-        #Check 3x3 squares
+        # Check 3x3 squares
         squares = []
         for i in range(3):
             for j in range(3):
-                rows = matr[(3*j):(3*j)+3]
+                rows = matr[(3 * j):(3 * j) + 3]
                 for x in range(len(rows)):
-                    rows[x] = rows[x][(3*i):(3*i)+3]
+                    rows[x] = rows[x][(3 * i):(3 * i) + 3]
                 squares.append(rows)
         for i in squares:
             square_lst = []
@@ -86,10 +87,22 @@ class Board:
                     return False
         return True
 
-    def new_game(self, difficulty = 0):
+    def new_game(self, difficulty=0):
         """Set the board's tiles to a valid starting board
         """
         pass
+
+    def get_user_input(self):
+        """Asks the user for a location, as well as a value. Checks if the location is valid, then returns as a list.
+        """
+        x = int(input("Row: "))
+        y = int(input("Column: "))
+        if (x > 8 or y > 8) or (x < 0 or y < 0):
+            print("Invalid placement")
+            self.get_user_input()
+        else:
+            value = int(input("Number: "))
+            return [x, y, value]
 
     def nice_string(self):
         """Returns a string representation of the board that is easily human readable
@@ -104,4 +117,3 @@ class Board:
                 out = out + "\n" + " -  -  - + -  -  - + -  -  -"
             out = out + "\n"
         return out
-
