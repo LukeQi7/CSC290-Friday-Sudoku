@@ -1,4 +1,0 @@
-.gitignore
---pycache--
-.idea/
-.DS_Store/
