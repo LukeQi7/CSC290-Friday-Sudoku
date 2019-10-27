@@ -1,3 +1,7 @@
+"""
+=== Module Description ===
+This module contains the board class.
+"""
 from tile import Tile
 
 
@@ -104,6 +108,11 @@ class Board:
             value = int(input("Number: "))
             return [x, y, value]
 
+    def extensions(self) -> List[Board]:
+        """Creates a list of next steps for the board.
+        """
+        return return_lst
+
     def nice_string(self):
         """Returns a string representation of the board that is easily human readable
         """
@@ -117,3 +126,4 @@ class Board:
                 out = out + "\n" + " -  -  - + -  -  - + -  -  -"
             out = out + "\n"
         return out
+

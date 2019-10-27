@@ -7,7 +7,6 @@ from __future__ import annotations
 from typing import List, Set, Union, Any
 
 
-
 class SudokuPuzzle():
     """
     A sudoku puzzle that may be solved, unsolved, or even unsolvable.
@@ -42,8 +41,6 @@ class SudokuPuzzle():
 
         self._n, self._symbols, self._symbol_set = n, symbols, symbol_set
 
-
-
     def is_solved(self) -> bool:
         """
         Return whether this SudokuPuzzle is solved.
@@ -71,10 +68,9 @@ class SudokuPuzzle():
         # all rows, column, subsquares have correct symbols
         return (not any("*" in row for row in symbols)) \
                and all([(self._row_set(i) == self._symbol_set and
-                      self._column_set(j) == self._symbol_set and
-                      self._subsquare_set(i, j) ==
-                      self._symbol_set) for i in range(n) for j in range(n)])
-
+                         self._column_set(j) == self._symbol_set and
+                         self._subsquare_set(i, j) ==
+                         self._symbol_set) for i in range(n) for j in range(n)])
 
     # some private helper methods (note the private docstrings for each of them)
     def _row_set(self, r: int) -> Set[str]:
@@ -109,5 +105,3 @@ class SudokuPuzzle():
             for j in range(ss):
                 subsquare_symbols.append(symbols[ul_row + i][ul_col + j])
         return set(subsquare_symbols)
-
-        
