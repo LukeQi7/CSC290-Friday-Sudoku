@@ -1,6 +1,6 @@
 from tile import Tile
 class Board:
-    
+
     DIMENSION = 9
 
     def __init__(self):
@@ -10,9 +10,12 @@ class Board:
             for j in range(self.DIMENSION):
                 self.board[i].append(Tile())
         # 9x9 board, list of lists of tiles
-    
+
     def set_penciled(self, x, y, val, penciled_boolean):
         self.board[x][y].set_penciled(val, penciled_boolean)
+
+    def set_value(self, x, y, val):
+        self.board[x][y] = val
 
     def get_val(self, x, y):
         return self.board[x][y].get_val()
@@ -21,7 +24,7 @@ class Board:
         """Return the dictionary of booleans that represents the penciled values for the specified tile
         """
         return self.board[x][y].get_penciled(num)
-    
+
     def change_val(self, x, y, val = 0):
         """Changes the value stored in board, and sets all penciled values to false
         """
@@ -47,7 +50,7 @@ class Board:
                 return False
             if len(set(col_lst)) != len(col_lst):
                 return False
-        
+
         #Check 3x3 squares
         squares = []
         for i in range(3):
@@ -62,9 +65,9 @@ class Board:
                 square_lst.extend(col)
             if len(set(square_lst)) != len(square_lst):
                 return False
-    
+
         return True
-    
+
     def get_int_matrix(self):
         """Returns a List of Lists of Integers, where every element is the corresponding value in the board
         """
@@ -87,7 +90,7 @@ class Board:
         """Set the board's tiles to a valid starting board
         """
         pass
-    
+
     def nice_string(self):
         """Returns a string representation of the board that is easily human readable
         """
@@ -101,4 +104,4 @@ class Board:
                 out = out + "\n" + " -  -  - + -  -  - + -  -  -"
             out = out + "\n"
         return out
-            
+
